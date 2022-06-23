@@ -74,7 +74,7 @@ int route_handler(sb_Event *e) {
     printf("%s - %s %s\n", e->address, e->method, e->path);
 
     ri_Router *router = e->udata;
-    return ri_match_route(router, e->method, e->path, e);
+    return ri_match(router, e->method, e->path, e);
   }
   
   return SB_RES_OK;
@@ -85,9 +85,9 @@ int main(void) {
   sb_Server *server;
 
   ri_Router *router = ri_router_new(not_found_handler);
-  ri_get_route(router, "/", index_handler);
-  ri_post_route(router, "/", index_post_handler);
-  ri_get_route(router, "/test", test_handler);
+  ri_route(router, "GET", "/", index_handler);
+  ri_route(router, "POST", "/", index_post_handler);
+  ri_route(router, "GET", "/test", test_handler);
 
   memset(&opt, 0, sizeof(opt));
   opt.port = "8000";

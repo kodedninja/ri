@@ -29,29 +29,10 @@ ri_Route* ri_route_new(char *method, char *path, ri_Handler handler) {
   return route;
 }
 
-ri_Route* ri_get_route(ri_Router *router, char *path, ri_Handler handler) {
-  ri_Route *route = ri_route_new("GET", path, handler);
+ri_Route* ri_route(ri_Router *router, char *method, char *path, ri_Handler handler) {
+  ri_Route *route = ri_route_new(method, path, handler);
   ri_add_route(router->routes, route);
   return route;
-}
-
-ri_Route* ri_post_route(ri_Router *router, char *path, ri_Handler handler) {
-  ri_Route *route = ri_route_new("POST", path, handler);
-  ri_add_route(router->routes, route);
-  return route;
-}
-
-int ri_match_route(ri_Router *router, const char *method, const char *path, void *e) {
-  ri_Route *r = router->routes->first;
-  while (r != NULL) {
-    if (strcmp(method, r->method) == 0 && strcmp(path, r->path) == 0) {
-      return r->handler(e);
-    }
-
-    r = r->next;
-  }
-
-  return router->default_handler(e);
 }
 
 void ri_add_route(ri_Routes *routes, ri_Route *route) {
@@ -62,5 +43,18 @@ void ri_add_route(ri_Routes *routes, ri_Route *route) {
     routes->first = route;
     routes->last = route;
   }
+}
+
+int ri_match(ri_Router *router, const char *method, const char *path, void *e) {
+  ri_Route *r = router->routes->first;
+  while (r != NULL) {
+    if (strcmp(method, r->method) == 0 && strcmp(path, r->path) == 0) {
+      return r->handler(e);
+    }
+
+    r = r->next;
+  }
+
+  return router->default_handler(e);
 }
 
