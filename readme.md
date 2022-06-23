@@ -3,10 +3,11 @@ A tiny router for a tiny HTTP server
 
 ## About
 Inspired by [`rxi/sandbird`](https://github.com/rxi/sandbird) I began to wonder
-whether it would be possible to use that little HTTP server in more complex 
-website context. A router is a basic building block in that.
+whether it would be possible to use that little HTTP server in a more complex 
+(in very relative terms) website context. A router is a basic building block in
+that.
 
-This is all very experimental and unfinished. Sometime in the future  I plan to
+This is all very experimental and unfinished. Sometime in the future I plan to
 change the simple list based storage into a trie.
 
 ## Usage
