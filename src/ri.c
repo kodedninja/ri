@@ -1,7 +1,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "router.h"
+#include "ri.h"
 
 ri_Router* ri_router_new(ri_Handler default_handler) { 
   ri_Routes *routes;

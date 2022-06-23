@@ -4,7 +4,7 @@
 #include <ctype.h>
 
 #include "sandbird.h"
-#include "router.h"
+#include "ri.h"
 
 static int index_handler(void *payload) {
   sb_Event *e = (sb_Event*) payload;
